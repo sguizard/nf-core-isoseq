@@ -1,25 +1,21 @@
 # ![nf-core/isoseq](docs/images/nf-core-isoseq_logo_light.png#gh-light-mode-only) ![nf-core/isoseq](docs/images/nf-core-isoseq_logo_dark.png#gh-dark-mode-only)
 
-[![GitHub Actions CI Status](https://github.com/nf-core/isoseq/workflows/nf-core%20CI/badge.svg)](https://github.com/nf-core/isoseq/actions?query=workflow%3A%22nf-core+CI%22)
-[![GitHub Actions Linting Status](https://github.com/nf-core/isoseq/workflows/nf-core%20linting/badge.svg)](https://github.com/nf-core/isoseq/actions?query=workflow%3A%22nf-core+linting%22)
-[![AWS CI](https://img.shields.io/badge/CI%20tests-full%20size-FF9900?logo=Amazon%20AWS)](https://nf-co.re/isoseq/results)
-[![Cite with Zenodo](http://img.shields.io/badge/DOI-10.5281/zenodo.XXXXXXX-1073c8)](https://doi.org/10.5281/zenodo.XXXXXXX)
+[![AWS CI](https://img.shields.io/badge/CI%20tests-full%20size-FF9900?labelColor=000000&logo=Amazon%20AWS)](https://nf-co.re/isoseq/results)
+[![DOI](https://zenodo.org/badge/499464196.svg)](https://zenodo.org/badge/latestdoi/499464196)
 
 [![Nextflow](https://img.shields.io/badge/nextflow%20DSL2-%E2%89%A521.10.3-23aa62.svg)](https://www.nextflow.io/)
-[![run with conda](http://img.shields.io/badge/run%20with-conda-3EB049?logo=anaconda)](https://docs.conda.io/en/latest/)
-[![run with docker](https://img.shields.io/badge/run%20with-docker-0db7ed?logo=docker)](https://www.docker.com/)
-[![run with singularity](https://img.shields.io/badge/run%20with-singularity-1d355c.svg)](https://sylabs.io/docs/)
+[![run with conda](http://img.shields.io/badge/run%20with-conda-3EB049?labelColor=000000&logo=anaconda)](https://docs.conda.io/en/latest/)
+[![run with docker](https://img.shields.io/badge/run%20with-docker-0db7ed?labelColor=000000&logo=docker)](https://www.docker.com/)
+[![run with singularity](https://img.shields.io/badge/run%20with-singularity-1d355c.svg?labelColor=000000)](https://sylabs.io/docs/)
 [![Launch on Nextflow Tower](https://img.shields.io/badge/Launch%20%F0%9F%9A%80-Nextflow%20Tower-%234256e7)](https://tower.nf/launch?pipeline=https://github.com/nf-core/isoseq)
 
-[![Get help on Slack](http://img.shields.io/badge/slack-nf--core%20%23isoseq-4A154B?logo=slack)](https://nfcore.slack.com/channels/isoseq)
-[![Follow on Twitter](http://img.shields.io/badge/twitter-%40nf__core-1DA1F2?logo=twitter)](https://twitter.com/nf_core)
-[![Watch on YouTube](http://img.shields.io/badge/youtube-nf--core-FF0000?logo=youtube)](https://www.youtube.com/c/nf-core)
+[![Get help on Slack](http://img.shields.io/badge/slack-nf--core%20%23isoseq-4A154B?labelColor=000000&logo=slack)](https://nfcore.slack.com/channels/isoseq)[![Follow on Twitter](http://img.shields.io/badge/twitter-%40nf__core-1DA1F2?labelColor=000000&logo=twitter)](https://twitter.com/nf_core)[![Watch on YouTube](http://img.shields.io/badge/youtube-nf--core-FF0000?labelColor=000000&logo=youtube)](https://www.youtube.com/c/nf-core)
 
 ## Introduction
 
 **nf-core/isoseq** is a bioinformatics best-practice analysis pipeline for Isoseq gene annotation with uLTRA and TAMA. Starting from raw isoseq subreads, the pipeline:
 
-- Generates the CCS
+- Generates the Circular Consensus Sequences (CSS)
 
 - Clean and polish CCS to create Full Length Non Chimeric (FLNC) reads
 
@@ -41,11 +37,10 @@ On release, automated continuous integration tests run the pipeline on a full-si
 4. Convert bam file into fasta file ([`BAMTOOLS CONVERT`](https://github.com/pezmaster31/bamtools))
 5. Select reads with a polyA tail and trim it ([`GSTAMA_POLYACLEANUP`](https://github.com/GenomeRIK/tama))
 6. uLTRA path: decompress FLNCs ([`GUNZIP`](https://www.gnu.org/software/gzip/))
-7. Map consensuses on the reference genome ([`MINIMAP2`](https://github.com/lh3/minimap2) or [`uLTRA`](https://github.com/ksahlin/ultra))
-8. uLTRA path remove spurious alignments ([`BIOPERL`](https://bioperl.org/))
-9. Sort sam file and convert bam ([`SAMTOOLS SORT`](http://www.htslib.org/doc/samtools-sort.html))
-10. Clean gene models ([`TAMA collapse`](https://github.com/GenomeRIK/tama))
-11. Merge annotations by sample ([`TAMA merge`](https://github.com/GenomeRIK/tama))
+7. uLTRA path: index `GTF` file for mapping ([`uLTRA`](https://github.com/ksahlin/ultra))
+8. Map consensuses on the reference genome ([`MINIMAP2`](https://github.com/lh3/minimap2) or [`uLTRA`](https://github.com/ksahlin/ultra))
+9. Clean gene models ([`TAMA collapse`](https://github.com/GenomeRIK/tama))
+10. Merge annotations by sample ([`TAMA merge`](https://github.com/GenomeRIK/tama))
 
 ## Quick Start
 
@@ -55,7 +50,7 @@ On release, automated continuous integration tests run the pipeline on a full-si
 
 3. Download the pipeline and test it on a minimal dataset with a single command:
 
-   ```console
+   ```bash
    nextflow run nf-core/isoseq -profile test,YOURPROFILE --outdir <OUTDIR>
    ```
 
@@ -68,8 +63,8 @@ On release, automated continuous integration tests run the pipeline on a full-si
 
 4. Start running your own analysis!
 
-   ```console
-   nextflow run nf-core/isoseq --input samplesheet.csv --fasta <GENOME FASTA> --primers <PRIMER FASTA> -profile <docker/singularity/podman/shifter/charliecloud/conda/institute>
+   ```bash
+   nextflow run nf-core/isoseq --input samplesheet.csv --outdir <OUTDIR> --genome <GENOME NAME (e.g. GRCh37)> --primers <PRIMER FASTA> -profile <docker/singularity/podman/shifter/charliecloud/conda/institute>
    ```
 
 ## Documentation
@@ -82,12 +77,13 @@ nf-core/isoseq was originally written by Sébastien Guizard.
 
 We thank the following people for their extensive assistance in the development of this pipeline:
 
-- Richard Kuo ([Wobble Genomics](https://www.wobblegenomics.com/)) for his valuable advices on isoseq analysis
-- The Workpackage 2 of GENE-SWitCH Project for their fruitful discussions and remarks
-- Mick Watson group for their support
+- Thanks to [Jose Espinosa-Carrasco](https://github.com/JoseEspinosa), [Daniel Schreyer](https://github.com/DSchreyer) and [Gisela Gabernet](https://github.com/ggabernet) for their reviews and contributions
+- [Kristoffer Sahlin](https://github.com/ksahlin) for `uLTRA` and the help he provided
+- [Richard Kuo](https://github.com/GenomeRIK) ([Wobble Genomics](https://www.wobblegenomics.com/)) for his valuable advices on isoseq analysis
+- The Workpackage 2 of [GENE-SWitCH Project](https://www.gene-switch.eu/) for their fruitful discussions and remarks
+- [Mick Watson](https://twitter.com/BioMickWatson) group for their support
 - The nf-core community for their help in the development of this pipeline
-- Daniel Schreyer for code reviews
-- James A. Fellows Yates & nf-core for the metro map style components for pipeline graph
+- [James A. Fellows Yates](https://github.com/jfy133) & nf-core for the metro map style components for pipeline graph
 
 This pipeline has been developed as part of the GENE-SWitCH project. This project has received funding from the European Union's Horizon 2020 Research and Innovation Programme under the grant agreement n° 817998.
 

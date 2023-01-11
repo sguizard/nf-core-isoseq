@@ -10,11 +10,12 @@
             "type": "object",
             "fa_icon": "fas fa-terminal",
             "description": "Define where the pipeline should find input data and save output data.",
-            "required": ["input", "primers"],
+            "required": ["input", "outdir", "primers"],
             "properties": {
                 "input": {
                     "type": "string",
                     "format": "file-path",
+                    "mimetype": "text/csv",
                     "schema": "assets/schema_input.json",
                     "description": "Path to comma-separated file containing information about the samples in the experiment.",
                     "help_text": "You will need to create a design file with information about the samples in your experiment before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated file with 3 columns, and a header row. See [usage docs](https://nf-co.re/isoseq/usage#samplesheet-input).",
@@ -54,57 +55,57 @@
             }
         },
         "ccs_options": {
-            "title": "ccs options",
+            "title": "CCS options",
             "type": "object",
-            "description": "Set options for each program",
+            "description": "Use these options to set CCS parameters",
             "default": "",
             "properties": {
                 "chunk": {
                     "type": "integer",
                     "default": 40,
-                    "description": "ccs --chunk option",
+                    "description": "ccs --chunk option, define the number of batches to run in parallel",
                     "help_text": "CCS workload can be split into to chunks for a faster running time. \nThis value must be a positive integer greater than 1. \n```bash\n--chunk 1/10 \n```",
                     "fa_icon": "fas fa-cog"
                 },
                 "rq": {
                     "type": "number",
                     "default": 0.9,
-                    "description": "ccs --rq option",
-                    "help_text": "Minimum read quaiity for a consensus. \nUnder this threshold the sequence is discarded. \nThis value must be in range [0-1]. \n```bash\n--rq 0.9\n```",
+                    "description": "ccs --rq option, define the minimum read quality for CCS selection",
+                    "help_text": "Minimum read quality for a consensus. \nUnder this threshold the sequence is discarded. \nThis value must be in range [0-1]. \n```bash\n--rq 0.9\n```",
                     "fa_icon": "fas fa-cog"
                 },
                 "min_passes": {
                     "type": "integer",
                     "default": 3,
-                    "description": "ccs --min-passes option",
+                    "description": "ccs --min-passes option, define the minimum number of passes to select a CCS",
                     "help_text": "Minimum number of full-length subreads required to generate CCS for a ZMW.",
                     "fa_icon": "fas fa-cog"
                 },
                 "min_snr": {
                     "type": "number",
                     "default": 2.5,
-                    "description": "ccs --min-snr option",
+                    "description": "ccs --min-snr option, minimum SNR of subreads to use for generating CCS",
                     "help_text": "Minimum SNR of subreads to use for generating CCS",
                     "fa_icon": "fas fa-cog"
                 },
                 "min_length": {
                     "type": "integer",
                     "default": 10,
-                    "description": "ccs --min-length option",
+                    "description": "ccs --min-length option, minimum CCS length for CCS selection",
                     "help_text": "Minimum draft length before polishing",
                     "fa_icon": "fas fa-cog"
                 },
                 "max_length": {
                     "type": "integer",
                     "default": 50000,
-                    "description": "ccs --max-length option",
+                    "description": "ccs --max-length option, maximum CCS length for CCS selection",
                     "help_text": "Maximum draft length before polishing",
                     "fa_icon": "fas fa-cog"
                 },
                 "top_passes": {
                     "type": "integer",
                     "default": 60,
-                    "description": "ccs --top-passes option",
+                    "description": "ccs --top-passes option, maximum number of passes to use for CCS generation",
                     "help_text": "Pick at maximum the top N passes for each ZMW",
                     "fa_icon": "fas fa-cog"
                 }
@@ -114,7 +115,7 @@
         "aligner_option": {
             "title": "Aligner option",
             "type": "object",
-            "description": "uLTRA options",
+            "description": "Aligner selection",
             "default": "",
             "fa_icon": "fas fa-stream",
             "properties": {
@@ -131,7 +132,7 @@
         "tama_options": {
             "title": "TAMA options",
             "type": "object",
-            "description": "TAMA collapse and TAMA merge options",
+            "description": "Use these options to set TAMA collapse and TAMA merge parameters",
             "default": "",
             "properties": {
                 "capped": {
@@ -200,8 +201,7 @@
                     "hidden": true,
                     "help_text": "Do not load `igenomes.config` when running the pipeline. You may choose this option if you observe clashes between custom parameters and those supplied in `igenomes.config`."
                 }
-            },
-            "required": ["fasta"]
+            }
         },
         "institutional_config_options": {
             "title": "Institutional config options",
@@ -336,11 +336,29 @@
                     "fa_icon": "fas fa-palette",
                     "hidden": true
                 },
+                "hook_url": {
+                    "type": "string",
+                    "description": "Incoming hook URL for messaging service",
+                    "fa_icon": "fas fa-people-group",
+                    "help_text": "Incoming hook URL for messaging service. Currently, only MS Teams is supported.",
+                    "hidden": true
+                },
                 "multiqc_config": {
                     "type": "string",
                     "description": "Custom config file to supply to MultiQC.",
                     "fa_icon": "fas fa-cog",
                     "hidden": true
+                },
+                "multiqc_logo": {
+                    "type": "string",
+                    "description": "Custom logo file to supply to MultiQC. File name must also be set in the MultiQC config file",
+                    "fa_icon": "fas fa-image",
+                    "hidden": true
+                },
+                "multiqc_methods_description": {
+                    "type": "string",
+                    "description": "Custom MultiQC yaml file containing HTML including a methods description.",
+                    "fa_icon": "fas fa-cog"
                 },
                 "tracedir": {
                     "type": "string",
