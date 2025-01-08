@@ -66,7 +66,7 @@ include { ULTRA_INDEX }                 from '../modules/nf-core/ultra/index/mai
 include { ULTRA_ALIGN }                 from '../modules/nf-core/ultra/align/main'
 include { GSTAMA_COLLAPSE }             from '../modules/nf-core/gstama/collapse/main'
 include { GSTAMA_MERGE }                from '../modules/nf-core/gstama/merge/main'
-include { CUSTOM_DUMPSOFTWAREVERSIONS } from '../modules/nf-core/custom/dumpsoftwareversions/main' addParams( options: [publish_files : ['_versions.yml':'']] )
+include { CUSTOM_DUMPSOFTWAREVERSIONS } from '../modules/nf-core/custom/dumpsoftwareversions/main'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
