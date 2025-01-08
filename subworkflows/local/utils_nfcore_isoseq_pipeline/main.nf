@@ -275,6 +275,10 @@ def create_pbccs_channel(row, chunk) {
         exit 1, "ERROR: Please check input samplesheet -> BAM file does not exist!\n${row[1]}"
     }
 
+    if ( row[0].bam_type == 'ccs' ) {
+        return [ [ row[0], file(row[1]), null ] ]
+    }
+
     if (!file(row[2]).exists()) {
         exit 1, "ERROR: Please check input samplesheet -> PBI file does not exist!\n${row[2]}"
     }

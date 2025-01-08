@@ -13,19 +13,35 @@
                 "errorMessage": "Sample name must be provided and cannot contain spaces",
                 "meta": ["id"]
             },
+            "bam_type": {
+                "anyOf": [
+                    {
+                        "type": "string",
+                        "pattern": "^subreads|ccs$",
+                        "format": "file-path"
+                    },
+                    {
+                        "type": "string",
+                        "maxLength": 0
+                    }
+                ],
+                "errorMessage": "BAM type should be either 'subreads' or 'ccs'. If missing, it is assumed to be 'subreads'",
+                "meta": ["bam_type"],
+                "dependentRequired": ["bam"]
+            },
             "bam": {
                 "type": "string",
                 "format": "file-path",
                 "exists": false,
                 "pattern": "(^\\S+\\.bam$|^None$)",
-                "errorMessage": "Subreads BAM file must be provided, cannot contain spaces and must have extension '.bam' or being 'None' if the entrypoint is 'map'"
+                "errorMessage": "Subreads/CCS BAM file must be provided, cannot contain spaces and must have extension '.bam' or being 'None' if the entrypoint is 'map'"
             },
             "pbi": {
                 "type": "string",
                 "format": "file-path",
                 "exists": false,
                 "pattern": "(^\\S+\\.bam\\.pbi$|^None$)",
-                "errorMessage": "PacBio Index file for BAM subreads cannot contain spaces and must have extension '.bam.pbi' or being 'None' if the entrypoint is 'map'"
+                "errorMessage": "PacBio Index file for BAM subreads cannot contain spaces and must have extension '.bam.pbi' or being 'None' if the entrypoint is 'map' or if the BAM file is CCS"
             },
             "reads": {
                 "type": "string",
