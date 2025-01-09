@@ -364,16 +364,16 @@
             "$ref": "#/$defs/input_output_options"
         },
         {
-            "$ref": "#/definitions/ccs_options"
+            "$ref": "#/$defs/ccs_options"
         },
         {
-            "$ref": "#/definitions/aligner_option"
+            "$ref": "#/$defs/aligner_option"
         },
         {
-            "$ref": "#/definitions/tama_options"
+            "$ref": "#/$defs/tama_options"
         },
         {
-            "$ref": "#/definitions/reference_genome_options"
+            "$ref": "#/$defs/reference_genome_options"
         },
         {
             "$ref": "#/$defs/institutional_config_options"
