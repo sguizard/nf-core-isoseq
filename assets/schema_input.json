@@ -13,21 +13,28 @@
                 "errorMessage": "Sample name must be provided and cannot contain spaces",
                 "meta": ["id"]
             },
-            "fastq_1": {
+            "bam": {
                 "type": "string",
                 "format": "file-path",
-                "exists": true,
-                "pattern": "^\\S+\\.f(ast)?q\\.gz$",
-                "errorMessage": "FastQ file for reads 1 must be provided, cannot contain spaces and must have extension '.fq.gz' or '.fastq.gz'"
+                "exists": false,
+                "pattern": "(^\\S+\\.bam$|^None$)",
+                "errorMessage": "Subreads BAM file must be provided, cannot contain spaces and must have extension '.bam' or being 'None' if the entrypoint is 'map'"
             },
-            "fastq_2": {
+            "pbi": {
                 "type": "string",
                 "format": "file-path",
-                "exists": true,
-                "pattern": "^\\S+\\.f(ast)?q\\.gz$",
-                "errorMessage": "FastQ file for reads 2 cannot contain spaces and must have extension '.fq.gz' or '.fastq.gz'"
+                "exists": false,
+                "pattern": "(^\\S+\\.bam\\.pbi$|^None$)",
+                "errorMessage": "PacBio Index file for BAM subreads cannot contain spaces and must have extension '.bam.pbi' or being 'None' if the entrypoint is 'map'"
+            },
+            "reads": {
+                "type": "string",
+                "format": "file-path",
+                "exists": false,
+                "pattern": "(^\\S+\\.fa\\.gz$|^None$)",
+                "errorMessage": "Long reads file cannot contain spaces and must have extension '.bam.pbi' or being 'None' if the entrypoint is 'isoseq'"
             }
         },
-        "required": ["sample", "fastq_1"]
+        "required": ["sample"]
     }
 }
