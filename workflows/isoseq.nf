@@ -3,9 +3,8 @@
     IMPORT MODULES / SUBWORKFLOWS / FUNCTIONS
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
-
 include { MULTIQC                } from '../modules/nf-core/multiqc/main'
-include { paramsSummaryMap       } from 'plugin/nf-validation'
+include { paramsSummaryMap       } from 'plugin/nf-schema'
 include { paramsSummaryMultiqc   } from '../subworkflows/nf-core/utils_nfcore_pipeline'
 include { softwareVersionsToYAML } from '../subworkflows/nf-core/utils_nfcore_pipeline'
 include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_isoseq_pipeline'
@@ -77,16 +76,13 @@ include { CUSTOM_DUMPSOFTWAREVERSIONS } from '../modules/nf-core/custom/dumpsoft
 workflow ISOSEQ {
 
     take:
-    ch_samplesheet
-
-
+    ch_samplesheet // channel: samplesheet read in from --input
     main:
     //
     // SET UP VERSIONS CHANNELS
     //
     ch_versions = Channel.empty()
     ch_multiqc_files = Channel.empty()
-
 
     //
     // START PIPELINE
@@ -199,6 +195,7 @@ workflow ISOSEQ {
     )
 
 
+
     //
     // MODULE: MultiQC
     //
@@ -245,9 +242,9 @@ workflow ISOSEQ {
         channel.empty()
     )
 
-    emit:
-    multiqc_report = MULTIQC.out.report.toList() // channel: /path/to/multiqc_report.html
+    emit:multiqc_report = MULTIQC.out.report.toList() // channel: /path/to/multiqc_report.html
     versions       = ch_versions                 // channel: [ path(versions.yml) ]
+
 }
 
 /*
