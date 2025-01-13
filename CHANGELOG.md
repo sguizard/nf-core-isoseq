@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### `Added`
 
 - Added an optional field `bam_type` to `schema_input` to allow simultaneous input of both Subreads and CCS sequences [#40](https://github.com/nf-core/isoseq/issues/40)
+- Updated nf-core template to version 3.1.1
 
 ### `Fixed`
 
