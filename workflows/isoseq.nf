@@ -42,7 +42,8 @@ include { SET_VALUE_CHANNEL as SET_PRIMERS_CHANNEL } from '../subworkflows/local
 //
 // MODULE: Local to the pipeline
 //
-include { GSTAMA_FILELIST } from '../modules/local/gstama/filelist/main'
+include { GSTAMA_FILELIST }                         from '../modules/local/gstama/filelist/main'
+include { GSTAMA_FILELIST as GSTAMA_FILELIST_ALL }  from '../modules/local/gstama/filelist/main'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -53,19 +54,20 @@ include { GSTAMA_FILELIST } from '../modules/local/gstama/filelist/main'
 //
 // MODULE: Installed directly from nf-core/modules
 //
-include { PBCCS }                       from '../modules/nf-core/pbccs/main'
-include { LIMA }                        from '../modules/nf-core/lima/main'
-include { ISOSEQ_REFINE }               from '../modules/nf-core/isoseq/refine/main'
-include { BAMTOOLS_CONVERT }            from '../modules/nf-core/bamtools/convert/main'
-include { GSTAMA_POLYACLEANUP }         from '../modules/nf-core/gstama/polyacleanup/main'
-include { GUNZIP }                      from '../modules/nf-core/gunzip/main'
-include { MINIMAP2_ALIGN }              from '../modules/nf-core/minimap2/align/main'
-include { GNU_SORT }                    from '../modules/nf-core/gnu/sort/main'
-include { ULTRA_INDEX }                 from '../modules/nf-core/ultra/index/main'
-include { ULTRA_ALIGN }                 from '../modules/nf-core/ultra/align/main'
-include { GSTAMA_COLLAPSE }             from '../modules/nf-core/gstama/collapse/main'
-include { GSTAMA_MERGE }                from '../modules/nf-core/gstama/merge/main'
-include { CUSTOM_DUMPSOFTWAREVERSIONS } from '../modules/nf-core/custom/dumpsoftwareversions/main'
+include { PBCCS }                               from '../modules/nf-core/pbccs/main'
+include { LIMA }                                from '../modules/nf-core/lima/main'
+include { ISOSEQ_REFINE }                       from '../modules/nf-core/isoseq/refine/main'
+include { BAMTOOLS_CONVERT }                    from '../modules/nf-core/bamtools/convert/main'
+include { GSTAMA_POLYACLEANUP }                 from '../modules/nf-core/gstama/polyacleanup/main'
+include { GUNZIP }                              from '../modules/nf-core/gunzip/main'
+include { MINIMAP2_ALIGN }                      from '../modules/nf-core/minimap2/align/main'
+include { GNU_SORT }                            from '../modules/nf-core/gnu/sort/main'
+include { ULTRA_INDEX }                         from '../modules/nf-core/ultra/index/main'
+include { ULTRA_ALIGN }                         from '../modules/nf-core/ultra/align/main'
+include { GSTAMA_COLLAPSE }                     from '../modules/nf-core/gstama/collapse/main'
+include { GSTAMA_MERGE }                        from '../modules/nf-core/gstama/merge/main'
+include { GSTAMA_MERGE as GSTAMA_MERGE_ALL }    from '../modules/nf-core/gstama/merge/main'
+include { CUSTOM_DUMPSOFTWAREVERSIONS }         from '../modules/nf-core/custom/dumpsoftwareversions/main'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -173,6 +175,27 @@ workflow ISOSEQ {
 
     GSTAMA_MERGE(ch_tmerge_in.map { [ it[0], it[1] ] }, ch_tmerge_in.map { it[2] }) // Merge all bed files from one sample into a uniq bed file
 
+    // Merge all bed files from all samples into a uniq bed file
+    ( params.tama_merge_all ? GSTAMA_MERGE.out.bed : Channel.empty() )
+        .map { _meta, bed -> [ [ id: "all_samples" ], bed ] }
+        .groupTuple()
+        .filter { _meta, beds -> beds.size() > 1 } // Only merge if there are more than one bed file
+        .set { ch_merge_all_filelist_input }
+
+    GSTAMA_FILELIST_ALL(
+        ch_merge_all_filelist_input,
+        cap_value,
+        Channel.value("1,1,1")
+    )
+
+    ch_merge_all_filelist_input
+        .join( GSTAMA_FILELIST_ALL.out.tsv )
+        .set { ch_tmerge_all_in }
+
+    GSTAMA_MERGE_ALL(
+        ch_tmerge_all_in.map { meta, beds, _list -> [ meta, beds ] },
+        ch_tmerge_all_in.map { _meta, _beds, list -> list }
+    )
 
     //
     // MODULE: Pipeline reporting
