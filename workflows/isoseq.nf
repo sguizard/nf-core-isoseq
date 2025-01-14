@@ -209,6 +209,7 @@ workflow ISOSEQ {
     }
 
     if (params.aligner == "ultra") {
+        ch_versions = ch_versions.mix(GUNZIP.out.versions)
         ch_versions = ch_versions.mix(GNU_SORT.out.versions)
         ch_versions = ch_versions.mix(ULTRA_INDEX.out.versions)
         ch_versions = ch_versions.mix(ULTRA_ALIGN.out.versions)
@@ -219,6 +220,7 @@ workflow ISOSEQ {
 
     ch_versions = ch_versions.mix(GSTAMA_COLLAPSE.out.versions)
     ch_versions = ch_versions.mix(GSTAMA_MERGE.out.versions)
+    ch_versions = ch_versions.mix(GSTAMA_MERGE_ALL.out.versions)
 
     //
     // MODULE: CUSTOM_DUMPSOFTWAREVERSIONS
