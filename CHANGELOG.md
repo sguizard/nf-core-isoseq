@@ -3,6 +3,26 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v2.1.0 - [08/01/2025]
+
+### `Added`
+
+- Added an optional field `bam_type` to `schema_input` to allow simultaneous input of both Subreads and CCS sequences [#40](https://github.com/nf-core/isoseq/issues/40)
+- Updated nf-core template to version 3.1.1
+
+### `Fixed`
+
+- Update modules (bamtools/convert, custom/dumpsoftwareversions, gnu/sort, gstama/collapse/ gstama/merge, gstama/polyacleanup, gunzip, isoseq/refine, lima, minimap2/align, multiqc, pbccs, ultra/align, ultra/index)
+
+  | Tool    | Previous version | New version |
+  | ------- | ---------------- | ----------- |
+  | multiqc | 1.24.1           | 1.26        |
+  | lima    | 2.9.0            | 2.12.0      |
+
+### `Dependencies`
+
+### `Deprecated`
+
 ## v2.0.0 - Sapphire Duck [05/09/2024]
 
 New entrypoint option to skip isoseq pre-processing.

@@ -12,6 +12,7 @@ It reads all samples from a samplesheet file and parallelizes computation for ea
 Depending on your on data, you might not need to run the isoseq preprocessing.
 This step can be skipped by setting the `--entrypoint` parameter to `map` and starting the analysis from the mapping step.
 By default, the entrypoint is set to `isoseq` and the full pipeline is run.
+The generation of CCS consensuses from raw isoseq subreads can be skipped by directly providing the CCS consensuses and setting the `bam_type` field to `ccs` in the samplesheet.
 
 ### Samplesheet input
 
@@ -24,12 +25,13 @@ Use `--input` parameter to specify its location.
 
 The samplesheet is a comma-separated file with 4 columns, and a header row as shown in the examples below.
 
-| Column   | Description                                                                                                                                                               |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `sample` | Custom sample name. Spaces in sample names are automatically converted to underscores (`_`).                                                                              |
-| `bam`    | Full path to isoseq subreads in `bam` format.                                                                                                                             |
-| `pbi`    | Full path to Pacbio index generated with [pbindex](https://github.com/pacificbiosciences/pbbam/). File's name must be compose of bam file name with the `.pbi` extension. |
-| `reads`  | Set of long reads to analyse in fasta format. The file must be gziped (.fa.gz).                                                                                           |
+| Column     | Description                                                                                                                                                               |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `sample`   | Custom sample name. Spaces in sample names are automatically converted to underscores (`_`).                                                                              |
+| `bam_type` | Type of data in the BAM file: `subreads` or `ccs`.                                                                                                                        |
+| `bam`      | Full path to isoseq subreads in `bam` format.                                                                                                                             |
+| `pbi`      | Full path to Pacbio index generated with [pbindex](https://github.com/pacificbiosciences/pbbam/). File's name must be compose of bam file name with the `.pbi` extension. |
+| `reads`    | Set of long reads to analyse in fasta format. The file must be gziped (.fa.gz).                                                                                           |
 
 Starting from `pbccs` (`isoseq` entrypoint), the columns `sample`, `bam`, `pbi` are mandatory.
 The `reads` column must be set to `None`.
@@ -38,6 +40,16 @@ The `reads` column must be set to `None`.
 sample,bam,pbi,reads
 sample1,sample1.subreads.bam,sample1.subreads.bam.pbi,None
 sample2,sample2.subreads.bam,sample2.subreads.bam.pbi,None
+```
+
+If CCS consensuses are available for a sample, `pbccs` can be skipped. Columns `sample`, `bam`, `bam_type` are mandatory in this case.
+The `reads` and `pbi` column must be set to `None`.
+
+```console
+sample,bam_type,bam,pbi,reads
+sample1,ccs,sample1.ccs.bam,None,None
+sample2,subreads,sample2.subreads.bam,sample2.subreads.bam.pbi,None
+sample3,subreads,sample3.subreads.bam,sample3.subreads.bam.pbi,None
 ```
 
 If the `map` entrypoint is used, the `reads` column must be filled with a gzipped fasta file with long reads and `sample` must be set.

@@ -65,7 +65,7 @@ include { ULTRA_INDEX }                 from '../modules/nf-core/ultra/index/mai
 include { ULTRA_ALIGN }                 from '../modules/nf-core/ultra/align/main'
 include { GSTAMA_COLLAPSE }             from '../modules/nf-core/gstama/collapse/main'
 include { GSTAMA_MERGE }                from '../modules/nf-core/gstama/merge/main'
-include { CUSTOM_DUMPSOFTWAREVERSIONS } from '../modules/nf-core/custom/dumpsoftwareversions/main' addParams( options: [publish_files : ['_versions.yml':'']] )
+include { CUSTOM_DUMPSOFTWAREVERSIONS } from '../modules/nf-core/custom/dumpsoftwareversions/main'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -100,7 +100,10 @@ workflow ISOSEQ {
 
         SET_CHUNK_NUM_CHANNEL(params.input, params.chunk) // - PBCCS parallelization
 
-        PBCCS(ch_samplesheet, SET_CHUNK_NUM_CHANNEL.out.chunk_num, params.chunk) // Generate CCS from raw reads
+        ch_subreads_bam = ch_samplesheet.filter { meta, _bam, _pbi -> meta.bam_type != "ccs" } // To cater to bam_type == null which implies subreads
+        ch_ccs_bam = ch_samplesheet.filter { meta, _bam, _pbi -> meta.bam_type == "ccs" }
+
+        PBCCS(ch_subreads_bam, SET_CHUNK_NUM_CHANNEL.out.chunk_num, params.chunk) // Generate CCS from raw reads
         PBCCS.out.bam // Update meta: update id (+chunkX) and store former id
         .map {
             def chk       = (it[1] =~ /.*\.(chunk\d+)\.bam/)[ 0 ][ 1 ]
@@ -108,6 +111,9 @@ workflow ISOSEQ {
             def id_new    = it[0].id + "." + chk
             return [ [id:id_new, id_former:id_former, single_end:true], it[1] ]
         }
+        .mix (
+            ch_ccs_bam.map { meta, bam, _nothing -> [ [id:meta.id, id_former:meta.id, single_end:true], bam ] }
+        )
         .set { ch_pbccs_bam_updated }
 
         LIMA(ch_pbccs_bam_updated, SET_PRIMERS_CHANNEL.out.data)  // Remove primers from CCS
