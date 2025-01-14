@@ -23,7 +23,7 @@
 
 **nf-core/isoseq** is a bioinformatics best-practice analysis pipeline for Isoseq gene annotation with uLTRA and TAMA. Starting from raw isoseq subreads, the pipeline:
 
-- Generates the Circular Consensus Sequences (CSS)
+- Generates the Circular Consensus Sequences (CCS)
 
 - Clean and polish CCS to create Full Length Non Chimeric (FLNC) reads
 
