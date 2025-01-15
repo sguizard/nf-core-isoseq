@@ -116,8 +116,12 @@ workflow ISOSEQ {
         )
         .set { ch_pbccs_bam_updated }
 
-        LIMA(ch_pbccs_bam_updated, SET_PRIMERS_CHANNEL.out.data)  // Remove primers from CCS
-        ISOSEQ_REFINE(LIMA.out.bam, SET_PRIMERS_CHANNEL.out.data) // Discard CCS without polyA tails, remove it from the other
+        ch_lima_input = params.skip_lima ? Channel.empty() : ch_pbccs_bam_updated
+        LIMA(ch_lima_input, SET_PRIMERS_CHANNEL.out.data)  // Remove primers from CCS
+
+        ch_isoseq_refine_input = params.skip_lima ? ch_pbccs_bam_updated : LIMA.out.bam
+        ISOSEQ_REFINE(ch_isoseq_refine_input, SET_PRIMERS_CHANNEL.out.data) // Discard CCS without polyA tails, remove it from the other
+
         BAMTOOLS_CONVERT(ISOSEQ_REFINE.out.bam)                   // Convert bam to fasta
         GSTAMA_POLYACLEANUP(BAMTOOLS_CONVERT.out.data)            // Clean polyA tails from reads
     }

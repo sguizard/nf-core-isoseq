@@ -3,12 +3,13 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## v2.1.0 - [08/01/2025]
+## v2.1.0 - [14/01/2025]
 
 ### `Added`
 
 - Added an optional field `bam_type` to `schema_input` to allow simultaneous input of both Subreads and CCS sequences [#40](https://github.com/nf-core/isoseq/issues/40)
 - Updated nf-core template to version 3.1.1
+- Added parameter `skip_lima` to allow processing of samples for which `LIMA` has already been applied
 
 ### `Fixed`
 
