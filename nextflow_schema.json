@@ -170,6 +170,11 @@
                     "description": "TAMA collapse: 3 prime wobble threshold",
                     "help_text": "Set the maximum threshold for collapsing 3 prime exon.\n```\n--three_prime 100\n```",
                     "fa_icon": "fas fa-cog"
+                },
+                "tama_merge_all": {
+                    "type": "boolean",
+                    "fa_icon": "fas fa-question-circle",
+                    "description": "TAMA merge: merge the sample-wise annotations into a single annotation?"
                 }
             },
             "fa_icon": "fas fa-cogs"
