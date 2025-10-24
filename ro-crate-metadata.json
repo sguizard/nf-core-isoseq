@@ -44,6 +44,9 @@
                     "@id": "modules/"
                 },
                 {
+                    "@id": "modules/local/"
+                },
+                {
                     "@id": "modules/nf-core/"
                 },
                 {
@@ -206,6 +209,11 @@
             "description": "Modules used by the pipeline"
         },
         {
+            "@id": "modules/local/",
+            "@type": "Dataset",
+            "description": "Pipeline-specific modules"
+        },
+        {
             "@id": "modules/nf-core/",
             "@type": "Dataset",
             "description": "nf-core modules"
@@ -290,6 +298,18 @@
             "@type": "Organization",
             "name": "nf-core",
             "url": "https://nf-co.re/"
+        },
+        {
+            "@id": "https://orcid.org/0000-0001-5116-4150",
+            "@type": "Person",
+            "email": "sguizard@ed.ac.uk",
+            "name": "S\u00e9bastien Guizard"
+        },
+        {
+            "@id": "#usman@smme.edu.pk",
+            "@type": "Person",
+            "email": "usman@smme.edu.pk",
+            "name": "Usman Rashid"
         }
     ]
 }
