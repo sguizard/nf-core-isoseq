@@ -311,10 +311,7 @@ def create_pbccs_channel(row, chunk) {
         exit 1, "ERROR: Please check input samplesheet -> PBI file does not exist!\n${row[2]}"
     }
 
-    def array = []
-    for ( i = 1 ; i <= chunk ; i++ ) {
-        array << [ row[0], file(row[1]), file(row[2]) ]
-    }
+    def array = (1..chunk).collect { [ row[0], file(row[1]), file(row[2]) ] }
 
     return array
 }
