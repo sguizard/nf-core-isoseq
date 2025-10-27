@@ -132,8 +132,8 @@ workflow ISOSEQ {
         // The ultra index channel must be the same size as the reads/GUNZIP channel.
         // join: gather all index files into one channel
         // combine: duplicates index tuples to match number of reads
-        // map: remove read and its meta as we don't need them 
-        ch_ultra_index = 
+        // map: remove read and its meta as we don't need them
+        ch_ultra_index =
             ULTRA_INDEX.out.pickle
             .join(ULTRA_INDEX.out.database)
             .combine(GUNZIP.out.gunzip)
