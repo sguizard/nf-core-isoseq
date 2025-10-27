@@ -128,10 +128,21 @@ workflow ISOSEQ {
             SET_FASTA_CHANNEL.out.data.map { it -> [ [id:'genome'], it ] },
             GNU_SORT.out.sorted)
         GUNZIP(ch_reads_to_map)                                                 // uncompress fastas (gz not supported by uLTRA)
+
+        // The ultra index channel must be the same size as the reads/GUNZIP channel.
+        // join: gather all index files into one channel
+        // combine: duplicates index tuples to match number of reads
+        // map: remove read and its meta as we don't need them 
+        ch_ultra_index = 
+            ULTRA_INDEX.out.pickle
+            .join(ULTRA_INDEX.out.database)
+            .combine(GUNZIP.out.gunzip)
+            .map { meta1, pickle, db, meta2, reads -> [meta1, pickle, db] }
+
         ULTRA_ALIGN(
             GUNZIP.out.gunzip,
             SET_FASTA_CHANNEL.out.data.map { it -> [ [id:'genome'], it ] },
-            ULTRA_INDEX.out.pickle.join(ULTRA_INDEX.out.database))              // Align read against genome
+            ch_ultra_index)                                                     // Align read against genome
         GSTAMA_COLLAPSE(ULTRA_ALIGN.out.bam, SET_FASTA_CHANNEL.out.data)        // Clean gene models
     }
     else if (params.aligner == "minimap2") {
