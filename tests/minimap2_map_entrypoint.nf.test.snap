@@ -1,0 +1,112 @@
+{
+    "-profile test_minimap2_map_entrypoint": {
+        "content": [
+            {
+                "GSTAMA_COLLAPSE": {
+                    "gstama": 20211103
+                },
+                "GSTAMA_MERGE": {
+                    "gstama": "0.0.1"
+                },
+                "MINIMAP2_ALIGN": {
+                    "minimap2": "2.29-r1283",
+                    "samtools": 1.21
+                },
+                "Workflow": {
+                    "nf-core/isoseq": "v2.1.0dev"
+                }
+            },
+            [
+                "06_MINIMAP2",
+                "06_MINIMAP2/alz.chunk.1.bam",
+                "06_MINIMAP2/alz.chunk.1.bam.bai",
+                "06_MINIMAP2/alz.chunk.2.bam",
+                "06_MINIMAP2/alz.chunk.2.bam.bai",
+                "06_MINIMAP2/alz.chunk.3.bam",
+                "06_MINIMAP2/alz.chunk.3.bam.bai",
+                "07_GSTAMA_COLLAPSE",
+                "07_GSTAMA_COLLAPSE/alz.chunk.1_collapsed.bed",
+                "07_GSTAMA_COLLAPSE/alz.chunk.1_local_density_error.txt",
+                "07_GSTAMA_COLLAPSE/alz.chunk.1_polya.txt",
+                "07_GSTAMA_COLLAPSE/alz.chunk.1_read.txt",
+                "07_GSTAMA_COLLAPSE/alz.chunk.1_strand_check.txt",
+                "07_GSTAMA_COLLAPSE/alz.chunk.1_trans_read.bed",
+                "07_GSTAMA_COLLAPSE/alz.chunk.1_trans_report.txt",
+                "07_GSTAMA_COLLAPSE/alz.chunk.1_varcov.txt",
+                "07_GSTAMA_COLLAPSE/alz.chunk.1_variants.txt",
+                "07_GSTAMA_COLLAPSE/alz.chunk.2_collapsed.bed",
+                "07_GSTAMA_COLLAPSE/alz.chunk.2_local_density_error.txt",
+                "07_GSTAMA_COLLAPSE/alz.chunk.2_polya.txt",
+                "07_GSTAMA_COLLAPSE/alz.chunk.2_read.txt",
+                "07_GSTAMA_COLLAPSE/alz.chunk.2_strand_check.txt",
+                "07_GSTAMA_COLLAPSE/alz.chunk.2_trans_read.bed",
+                "07_GSTAMA_COLLAPSE/alz.chunk.2_trans_report.txt",
+                "07_GSTAMA_COLLAPSE/alz.chunk.2_varcov.txt",
+                "07_GSTAMA_COLLAPSE/alz.chunk.2_variants.txt",
+                "07_GSTAMA_COLLAPSE/alz.chunk.3_collapsed.bed",
+                "07_GSTAMA_COLLAPSE/alz.chunk.3_local_density_error.txt",
+                "07_GSTAMA_COLLAPSE/alz.chunk.3_polya.txt",
+                "07_GSTAMA_COLLAPSE/alz.chunk.3_read.txt",
+                "07_GSTAMA_COLLAPSE/alz.chunk.3_strand_check.txt",
+                "07_GSTAMA_COLLAPSE/alz.chunk.3_trans_read.bed",
+                "07_GSTAMA_COLLAPSE/alz.chunk.3_trans_report.txt",
+                "07_GSTAMA_COLLAPSE/alz.chunk.3_varcov.txt",
+                "07_GSTAMA_COLLAPSE/alz.chunk.3_variants.txt",
+                "08_GSTAMA_FILELIST",
+                "08_GSTAMA_FILELIST/alz.tsv",
+                "09_GSTAMA_MERGE",
+                "09_GSTAMA_MERGE/alz.bed",
+                "09_GSTAMA_MERGE/alz_gene_report.txt",
+                "09_GSTAMA_MERGE/alz_merge.txt",
+                "09_GSTAMA_MERGE/alz_trans_report.txt",
+                "pipeline_info",
+                "pipeline_info/nf_core_isoseq_software_mqc_versions.yml"
+            ],
+            [
+                "alz.chunk.1.bam:md5,24464add1cb5a6119d995c5be9fc94ba",
+                "alz.chunk.1.bam.bai:md5,aec127a8972c71771212c0c14ccbdd3e",
+                "alz.chunk.2.bam:md5,f5f1bf237f52267518c7ef7b157cf8e6",
+                "alz.chunk.2.bam.bai:md5,d7c1b6391c0279b2053dca26d4943054",
+                "alz.chunk.3.bam:md5,9e00cc2d65c481827c4b2b182b306138",
+                "alz.chunk.3.bam.bai:md5,ae9826579fc49c58e9bb980fd8d394a2",
+                "alz.chunk.1_collapsed.bed:md5,9541ea967ec71d911e7444677dc44930",
+                "alz.chunk.1_local_density_error.txt:md5,f15f574ab9df35575b56bd0ff3618075",
+                "alz.chunk.1_polya.txt:md5,434e6f3327bbeecd708dc6cc1edaa118",
+                "alz.chunk.1_read.txt:md5,cf3d9c4975bb4c4d6b5d6015c430d53a",
+                "alz.chunk.1_strand_check.txt:md5,42cc52b2660b1e0b84e1c9ab37a965ec",
+                "alz.chunk.1_trans_read.bed:md5,a404a1b40994ff18999f7b485808870f",
+                "alz.chunk.1_trans_report.txt:md5,4dbe12a23ee7d55c65b5f37dc9ff5211",
+                "alz.chunk.1_varcov.txt:md5,7b77861fe5e8e953d6d193ace2467e12",
+                "alz.chunk.1_variants.txt:md5,a4c518e1dfb7ff762bd7e5c3d7370986",
+                "alz.chunk.2_collapsed.bed:md5,5139b8363dc4ee0a1384917ce1b4ec78",
+                "alz.chunk.2_local_density_error.txt:md5,2a14d3eb1f3f175fc4e361455b7a82aa",
+                "alz.chunk.2_polya.txt:md5,33b2e1cf2b1b6a091d0a0f89af469665",
+                "alz.chunk.2_read.txt:md5,d82ae1ed43dc4d7b206c7f350806fa03",
+                "alz.chunk.2_strand_check.txt:md5,42cc52b2660b1e0b84e1c9ab37a965ec",
+                "alz.chunk.2_trans_read.bed:md5,d72ac6666126c6b3724b361e1c76b148",
+                "alz.chunk.2_trans_report.txt:md5,1fa865c42dbc015dd037fad5b6df0c60",
+                "alz.chunk.2_varcov.txt:md5,7b77861fe5e8e953d6d193ace2467e12",
+                "alz.chunk.2_variants.txt:md5,a4c518e1dfb7ff762bd7e5c3d7370986",
+                "alz.chunk.3_collapsed.bed:md5,1d7d7bf56df65db284148d47da42315a",
+                "alz.chunk.3_local_density_error.txt:md5,f4e4049257a3d53212e598bcaebd0324",
+                "alz.chunk.3_polya.txt:md5,a5c286555d4d4468014bbe03dd66e56d",
+                "alz.chunk.3_read.txt:md5,9bf59fe48385c62c438bb6619475235d",
+                "alz.chunk.3_strand_check.txt:md5,42cc52b2660b1e0b84e1c9ab37a965ec",
+                "alz.chunk.3_trans_read.bed:md5,db831dadb812e74bb2b13a74397cde2e",
+                "alz.chunk.3_trans_report.txt:md5,92ac5ceecc9f74cc107f531f594385d8",
+                "alz.chunk.3_varcov.txt:md5,7b77861fe5e8e953d6d193ace2467e12",
+                "alz.chunk.3_variants.txt:md5,a4c518e1dfb7ff762bd7e5c3d7370986",
+                "alz.tsv:md5,c6162a453837c9cfa11d3693858df1ab",
+                "alz.bed:md5,523651e9d6fbb5e766ecc88ecfe1ff20",
+                "alz_gene_report.txt:md5,f461c6a43fb6c16584cb74bbd5ac6108",
+                "alz_merge.txt:md5,48ec86217615ee975b16b9ea40d49c8f",
+                "alz_trans_report.txt:md5,641dad1c7515a7cf4a9c7b3811c44e8a"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2025-10-27T21:42:56.56068326"
+    }
+}

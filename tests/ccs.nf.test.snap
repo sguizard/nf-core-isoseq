@@ -1,0 +1,154 @@
+{
+    "-profile test_ccs": {
+        "content": [
+            {
+                "BAMTOOLS_CONVERT": {
+                    "bamtools": "2.5.2"
+                },
+                "GNU_SORT": {
+                    "coreutils": 9.5
+                },
+                "GSTAMA_COLLAPSE": {
+                    "gstama": 20211103
+                },
+                "GSTAMA_MERGE": {
+                    "gstama": "0.0.1"
+                },
+                "GSTAMA_POLYACLEANUP": {
+                    "gstama": 20211103
+                },
+                "GUNZIP": {
+                    "gunzip": 1.13
+                },
+                "ISOSEQ_REFINE": {
+                    "isoseq": "4.0.0"
+                },
+                "LIMA": {
+                    "lima": "2.12.0"
+                },
+                "ULTRA_ALIGN": {
+                    "ultra": 0.1,
+                    "samtools": 1.17
+                },
+                "ULTRA_INDEX": {
+                    "ultra": 0.1,
+                    "gffutils": "0.11.1",
+                    "sqlite": "3.42.0"
+                },
+                "Workflow": {
+                    "nf-core/isoseq": "v2.1.0dev"
+                }
+            },
+            [
+                "02_LIMA",
+                "02_LIMA/alz_flnc.NEB_5p--NEB_Clontech_3p.bam",
+                "02_LIMA/alz_flnc.NEB_5p--NEB_Clontech_3p.bam.pbi",
+                "02_LIMA/alz_flnc.NEB_5p--NEB_Clontech_3p.consensusreadset.xml",
+                "02_LIMA/alz_flnc.consensusreadset.xml",
+                "02_LIMA/alz_flnc.json",
+                "02_LIMA/alz_flnc.lima.clips",
+                "02_LIMA/alz_flnc.lima.counts",
+                "02_LIMA/alz_flnc.lima.guess",
+                "02_LIMA/alz_flnc.lima.report",
+                "02_LIMA/alz_flnc.lima.summary",
+                "03_ISOSEQ_REFINE",
+                "03_ISOSEQ_REFINE/alz.bam",
+                "03_ISOSEQ_REFINE/alz.bam.pbi",
+                "03_ISOSEQ_REFINE/alz.consensusreadset.xml",
+                "03_ISOSEQ_REFINE/alz.filter_summary.report.json",
+                "03_ISOSEQ_REFINE/alz.report.csv",
+                "04_BAMTOOLS_CONVERT",
+                "04_BAMTOOLS_CONVERT/alz.fasta",
+                "05_GSTAMA_POLYACLEANUP",
+                "05_GSTAMA_POLYACLEANUP/alz_tama.fa.gz",
+                "05_GSTAMA_POLYACLEANUP/alz_tama_polya_flnc_report.txt.gz",
+                "05_GSTAMA_POLYACLEANUP/alz_tama_tails.fa.gz",
+                "06.1_GUNZIP",
+                "06.1_GUNZIP/alz_tama.fa",
+                "06.2_ULTRA",
+                "06.2_ULTRA/alz.bam",
+                "07_GSTAMA_COLLAPSE",
+                "07_GSTAMA_COLLAPSE/alz_collapsed.bed",
+                "07_GSTAMA_COLLAPSE/alz_local_density_error.txt",
+                "07_GSTAMA_COLLAPSE/alz_polya.txt",
+                "07_GSTAMA_COLLAPSE/alz_read.txt",
+                "07_GSTAMA_COLLAPSE/alz_strand_check.txt",
+                "07_GSTAMA_COLLAPSE/alz_trans_read.bed",
+                "07_GSTAMA_COLLAPSE/alz_trans_report.txt",
+                "07_GSTAMA_COLLAPSE/alz_varcov.txt",
+                "07_GSTAMA_COLLAPSE/alz_variants.txt",
+                "08_GSTAMA_FILELIST",
+                "08_GSTAMA_FILELIST/alz.tsv",
+                "09_GSTAMA_MERGE",
+                "09_GSTAMA_MERGE/alz.bed",
+                "09_GSTAMA_MERGE/alz_gene_report.txt",
+                "09_GSTAMA_MERGE/alz_merge.txt",
+                "09_GSTAMA_MERGE/alz_trans_report.txt",
+                "ULTRA_INDEX",
+                "ULTRA_INDEX/all_splice_pairs_annotations.pickle",
+                "ULTRA_INDEX/all_splice_sites_annotations.pickle",
+                "ULTRA_INDEX/chr_to_id.pickle",
+                "ULTRA_INDEX/database.db",
+                "ULTRA_INDEX/exon_choordinates_to_id.pickle",
+                "ULTRA_INDEX/flank_choordinates.pickle",
+                "ULTRA_INDEX/gene_to_small_segments.pickle",
+                "ULTRA_INDEX/genome.gtf",
+                "ULTRA_INDEX/id_to_chr.pickle",
+                "ULTRA_INDEX/max_intron_chr.pickle",
+                "ULTRA_INDEX/parts_to_segments.pickle",
+                "ULTRA_INDEX/ref_exon_sequences.pickle",
+                "ULTRA_INDEX/ref_flank_sequences.pickle",
+                "ULTRA_INDEX/ref_part_sequences.pickle",
+                "ULTRA_INDEX/ref_segment_sequences.pickle",
+                "ULTRA_INDEX/refs_id_lengths.pickle",
+                "ULTRA_INDEX/refs_lengths.pickle",
+                "ULTRA_INDEX/segment_id_to_choordinates.pickle",
+                "ULTRA_INDEX/segment_to_gene.pickle",
+                "ULTRA_INDEX/segment_to_ref.pickle",
+                "ULTRA_INDEX/splices_to_transcripts.pickle",
+                "ULTRA_INDEX/transcripts_to_splices.pickle",
+                "pipeline_info",
+                "pipeline_info/nf_core_isoseq_software_mqc_versions.yml"
+            ],
+            [
+                "alz_flnc.NEB_5p--NEB_Clontech_3p.bam:md5,f96b8f3fd1455154800fbfc88e8a904a",
+                "alz_flnc.NEB_5p--NEB_Clontech_3p.bam.pbi:md5,851cf26eb54e4399cba5241db969dc0c",
+                "alz_flnc.lima.clips:md5,fa03bc75bd78b2648a139fd67c69208f",
+                "alz_flnc.lima.counts:md5,842c6a23ca2de504ced4538ad5111da1",
+                "alz_flnc.lima.guess:md5,d3675af3ca8a908ee9e3c231668392d3",
+                "alz_flnc.lima.report:md5,dc073985322ae0a003ccc7e0fa4db5e6",
+                "alz_flnc.lima.summary:md5,bcbcaaaca418bdeb91141c81715ca420",
+                "alz.bam:md5,ff6690c8eb8a8162ee444b366a2a145c",
+                "alz.bam.pbi:md5,0d870d767905a946f0b30f3bb87cef79",
+                "alz.report.csv:md5,d42a139e5d9b08396bdb087c01243ea9",
+                "alz.fasta:md5,c5c29b8da57e24222fded8814ea43fca",
+                "alz_tama.fa.gz:md5,a5d8c20b1c0d7e2d50eeff2d25cbbd12",
+                "alz_tama_polya_flnc_report.txt.gz:md5,7f2c7b74060d9d544c8e265062099036",
+                "alz_tama_tails.fa.gz:md5,d06fe53efb64e58ea75b9c5b14a16581",
+                "alz_tama.fa:md5,a5d8c20b1c0d7e2d50eeff2d25cbbd12",
+                "alz.bam:md5,44d720b407c7d29c1dd5ae3da7d4efe5",
+                "alz_collapsed.bed:md5,80d784d85110df38c81cfa1fbcf6973b",
+                "alz_local_density_error.txt:md5,b13b8a8642f8d32b2a6e239470415a95",
+                "alz_polya.txt:md5,29f60f10af473409d289a57e55a7d84a",
+                "alz_read.txt:md5,94158b001c13ee7d5ea45195d5bf375a",
+                "alz_strand_check.txt:md5,42cc52b2660b1e0b84e1c9ab37a965ec",
+                "alz_trans_read.bed:md5,e163400a02773d5cfbea6f78410a6096",
+                "alz_trans_report.txt:md5,e1dfdcf1f8010d9ffd254f1d1951d82b",
+                "alz_varcov.txt:md5,9b0ab2605e0d37420edb3005eea48315",
+                "alz_variants.txt:md5,d0b44f690cfc594ab4539563c3622c2c",
+                "alz.tsv:md5,09a0be26d459a3557258e8d89117859f",
+                "alz.bed:md5,208985ccf3fe2f7b8943a02dc4145679",
+                "alz_gene_report.txt:md5,8f1a9208f4cea05770c400b013157a86",
+                "alz_merge.txt:md5,2457b6408c98a4adbce79de8cbc2777f",
+                "alz_trans_report.txt:md5,4b2b16f1585225ad45a3a6fb9dd5f4fc",
+                "database.db:md5,c0af58dc048c951aec5a2b087c1fdb35",
+                "genome.gtf:md5,42790347cfe144a957e5fd2a2a3b8d7f"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2025-10-27T21:35:26.57694074"
+    }
+}

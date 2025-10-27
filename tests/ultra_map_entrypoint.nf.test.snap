@@ -1,0 +1,149 @@
+{
+    "-profile test_ultra_map_entrypoint": {
+        "content": [
+            {
+                "GNU_SORT": {
+                    "coreutils": 9.5
+                },
+                "GSTAMA_COLLAPSE": {
+                    "gstama": 20211103
+                },
+                "GSTAMA_MERGE": {
+                    "gstama": "0.0.1"
+                },
+                "GUNZIP": {
+                    "gunzip": 1.13
+                },
+                "ULTRA_ALIGN": {
+                    "ultra": 0.1,
+                    "samtools": 1.17
+                },
+                "ULTRA_INDEX": {
+                    "ultra": 0.1,
+                    "gffutils": "0.11.1",
+                    "sqlite": "3.42.0"
+                },
+                "Workflow": {
+                    "nf-core/isoseq": "v2.1.0dev"
+                }
+            },
+            [
+                "06.1_GUNZIP",
+                "06.1_GUNZIP/alz.chunk.1_tama.1",
+                "06.1_GUNZIP/alz.chunk.2_tama.2",
+                "06.1_GUNZIP/alz.chunk.3_tama.3",
+                "06.2_ULTRA",
+                "06.2_ULTRA/alz.chunk.1.bam",
+                "06.2_ULTRA/alz.chunk.2.bam",
+                "06.2_ULTRA/alz.chunk.3.bam",
+                "07_GSTAMA_COLLAPSE",
+                "07_GSTAMA_COLLAPSE/alz.chunk.1_collapsed.bed",
+                "07_GSTAMA_COLLAPSE/alz.chunk.1_local_density_error.txt",
+                "07_GSTAMA_COLLAPSE/alz.chunk.1_polya.txt",
+                "07_GSTAMA_COLLAPSE/alz.chunk.1_read.txt",
+                "07_GSTAMA_COLLAPSE/alz.chunk.1_strand_check.txt",
+                "07_GSTAMA_COLLAPSE/alz.chunk.1_trans_read.bed",
+                "07_GSTAMA_COLLAPSE/alz.chunk.1_trans_report.txt",
+                "07_GSTAMA_COLLAPSE/alz.chunk.1_varcov.txt",
+                "07_GSTAMA_COLLAPSE/alz.chunk.1_variants.txt",
+                "07_GSTAMA_COLLAPSE/alz.chunk.2_collapsed.bed",
+                "07_GSTAMA_COLLAPSE/alz.chunk.2_local_density_error.txt",
+                "07_GSTAMA_COLLAPSE/alz.chunk.2_polya.txt",
+                "07_GSTAMA_COLLAPSE/alz.chunk.2_read.txt",
+                "07_GSTAMA_COLLAPSE/alz.chunk.2_strand_check.txt",
+                "07_GSTAMA_COLLAPSE/alz.chunk.2_trans_read.bed",
+                "07_GSTAMA_COLLAPSE/alz.chunk.2_trans_report.txt",
+                "07_GSTAMA_COLLAPSE/alz.chunk.2_varcov.txt",
+                "07_GSTAMA_COLLAPSE/alz.chunk.2_variants.txt",
+                "07_GSTAMA_COLLAPSE/alz.chunk.3_collapsed.bed",
+                "07_GSTAMA_COLLAPSE/alz.chunk.3_local_density_error.txt",
+                "07_GSTAMA_COLLAPSE/alz.chunk.3_polya.txt",
+                "07_GSTAMA_COLLAPSE/alz.chunk.3_read.txt",
+                "07_GSTAMA_COLLAPSE/alz.chunk.3_strand_check.txt",
+                "07_GSTAMA_COLLAPSE/alz.chunk.3_trans_read.bed",
+                "07_GSTAMA_COLLAPSE/alz.chunk.3_trans_report.txt",
+                "07_GSTAMA_COLLAPSE/alz.chunk.3_varcov.txt",
+                "07_GSTAMA_COLLAPSE/alz.chunk.3_variants.txt",
+                "08_GSTAMA_FILELIST",
+                "08_GSTAMA_FILELIST/alz.tsv",
+                "09_GSTAMA_MERGE",
+                "09_GSTAMA_MERGE/alz.bed",
+                "09_GSTAMA_MERGE/alz_gene_report.txt",
+                "09_GSTAMA_MERGE/alz_merge.txt",
+                "09_GSTAMA_MERGE/alz_trans_report.txt",
+                "ULTRA_INDEX",
+                "ULTRA_INDEX/all_splice_pairs_annotations.pickle",
+                "ULTRA_INDEX/all_splice_sites_annotations.pickle",
+                "ULTRA_INDEX/chr_to_id.pickle",
+                "ULTRA_INDEX/database.db",
+                "ULTRA_INDEX/exon_choordinates_to_id.pickle",
+                "ULTRA_INDEX/flank_choordinates.pickle",
+                "ULTRA_INDEX/gene_to_small_segments.pickle",
+                "ULTRA_INDEX/genome.gtf",
+                "ULTRA_INDEX/id_to_chr.pickle",
+                "ULTRA_INDEX/max_intron_chr.pickle",
+                "ULTRA_INDEX/parts_to_segments.pickle",
+                "ULTRA_INDEX/ref_exon_sequences.pickle",
+                "ULTRA_INDEX/ref_flank_sequences.pickle",
+                "ULTRA_INDEX/ref_part_sequences.pickle",
+                "ULTRA_INDEX/ref_segment_sequences.pickle",
+                "ULTRA_INDEX/refs_id_lengths.pickle",
+                "ULTRA_INDEX/refs_lengths.pickle",
+                "ULTRA_INDEX/segment_id_to_choordinates.pickle",
+                "ULTRA_INDEX/segment_to_gene.pickle",
+                "ULTRA_INDEX/segment_to_ref.pickle",
+                "ULTRA_INDEX/splices_to_transcripts.pickle",
+                "ULTRA_INDEX/transcripts_to_splices.pickle",
+                "pipeline_info",
+                "pipeline_info/nf_core_isoseq_software_mqc_versions.yml"
+            ],
+            [
+                "alz.chunk.1_tama.1:md5,2fb189e992a9370fc0a5bb825ff21bbf",
+                "alz.chunk.2_tama.2:md5,230203392322a83a935514544765b743",
+                "alz.chunk.3_tama.3:md5,d143bd362fdf72912434e7d27c88a9d2",
+                "alz.chunk.1.bam:md5,5a20d96850aaa90f3d53ed4c93f6920a",
+                "alz.chunk.2.bam:md5,6336403475e87dda6f3a66a05cba41d9",
+                "alz.chunk.3.bam:md5,fe42b4b112cf16a8669b807e834d564a",
+                "alz.chunk.1_collapsed.bed:md5,9541ea967ec71d911e7444677dc44930",
+                "alz.chunk.1_local_density_error.txt:md5,353f761fd5e75a9701d571aa67ad3d42",
+                "alz.chunk.1_polya.txt:md5,434e6f3327bbeecd708dc6cc1edaa118",
+                "alz.chunk.1_read.txt:md5,05393ebb1f932d24fb4fa0c713c50e32",
+                "alz.chunk.1_strand_check.txt:md5,42cc52b2660b1e0b84e1c9ab37a965ec",
+                "alz.chunk.1_trans_read.bed:md5,a404a1b40994ff18999f7b485808870f",
+                "alz.chunk.1_trans_report.txt:md5,4dbe12a23ee7d55c65b5f37dc9ff5211",
+                "alz.chunk.1_varcov.txt:md5,7b77861fe5e8e953d6d193ace2467e12",
+                "alz.chunk.1_variants.txt:md5,a4c518e1dfb7ff762bd7e5c3d7370986",
+                "alz.chunk.2_collapsed.bed:md5,5139b8363dc4ee0a1384917ce1b4ec78",
+                "alz.chunk.2_local_density_error.txt:md5,e2e04aa49746e9cd3bed32ef0c1a5a32",
+                "alz.chunk.2_polya.txt:md5,33b2e1cf2b1b6a091d0a0f89af469665",
+                "alz.chunk.2_read.txt:md5,7946ec26c648f5bb75192d09717bbc17",
+                "alz.chunk.2_strand_check.txt:md5,42cc52b2660b1e0b84e1c9ab37a965ec",
+                "alz.chunk.2_trans_read.bed:md5,d72ac6666126c6b3724b361e1c76b148",
+                "alz.chunk.2_trans_report.txt:md5,1fa865c42dbc015dd037fad5b6df0c60",
+                "alz.chunk.2_varcov.txt:md5,7b77861fe5e8e953d6d193ace2467e12",
+                "alz.chunk.2_variants.txt:md5,a4c518e1dfb7ff762bd7e5c3d7370986",
+                "alz.chunk.3_collapsed.bed:md5,e842504f8330383566f814ba0c295197",
+                "alz.chunk.3_local_density_error.txt:md5,abb3f8a19b6b4c2ece518be52a440e14",
+                "alz.chunk.3_polya.txt:md5,a5c286555d4d4468014bbe03dd66e56d",
+                "alz.chunk.3_read.txt:md5,c49cf5a7673a02da563dbb8af87a7db8",
+                "alz.chunk.3_strand_check.txt:md5,42cc52b2660b1e0b84e1c9ab37a965ec",
+                "alz.chunk.3_trans_read.bed:md5,5375f103eb9385a7ecbfb6c1e26f6f45",
+                "alz.chunk.3_trans_report.txt:md5,cd8d9e1b7df55c232dd35088fe4e64c5",
+                "alz.chunk.3_varcov.txt:md5,7b77861fe5e8e953d6d193ace2467e12",
+                "alz.chunk.3_variants.txt:md5,a4c518e1dfb7ff762bd7e5c3d7370986",
+                "alz.tsv:md5,c6162a453837c9cfa11d3693858df1ab",
+                "alz.bed:md5,2cdf81e21918f6c445be54023473ab8d",
+                "alz_gene_report.txt:md5,f461c6a43fb6c16584cb74bbd5ac6108",
+                "alz_merge.txt:md5,91d94a24dd050028ee4fa2145acb57b3",
+                "alz_trans_report.txt:md5,4e43a9aaa4900710a5e13d63850996a9",
+                "database.db:md5,c0af58dc048c951aec5a2b087c1fdb35",
+                "genome.gtf:md5,42790347cfe144a957e5fd2a2a3b8d7f"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2025-10-27T21:46:41.287621587"
+    }
+}
