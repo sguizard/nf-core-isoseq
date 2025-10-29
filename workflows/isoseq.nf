@@ -86,9 +86,13 @@ workflow ISOSEQ {
         SET_CHUNK_NUM_CHANNEL(params.input, params.chunk) // - PBCCS parallelization
 
         ch_subreads_bam = ch_samplesheet.filter { meta, _bam, _pbi -> meta.bam_type != "ccs" } // To cater to bam_type == null which implies subreads
-        ch_ccs_bam = ch_samplesheet.filter { meta, _bam, _pbi -> meta.bam_type == "ccs" }
+        ch_ccs_bam      = ch_samplesheet.filter { meta, _bam, _pbi -> meta.bam_type == "ccs" }
 
-        PBCCS(ch_subreads_bam, SET_CHUNK_NUM_CHANNEL.out.chunk_num, params.chunk) // Generate CCS from raw reads
+        PBCCS(
+            ch_subreads_bam, 
+            SET_CHUNK_NUM_CHANNEL.out.chunk_num, 
+            params.chunk) // Generate CCS from raw reads
+        
         PBCCS.out.bam // Update meta: update id (+chunkX) and store former id
         .map { meta, file ->
             def chk       = (file =~ /.*\.(chunk\d+)\.bam/)[0][1]
@@ -96,9 +100,7 @@ workflow ISOSEQ {
             def id_new    = meta.id + "." + chk
             return [ [id:id_new, id_former:id_former, single_end:true], file ]
         }
-        .mix (
-            ch_ccs_bam.map { meta, bam, _nothing -> [ [id:meta.id, id_former:meta.id, single_end:true], bam ] }
-        )
+        .mix (ch_ccs_bam.map { meta, bam, _nothing -> [ [id:meta.id, id_former:meta.id, single_end:true], bam ] })
         .set { ch_pbccs_bam_updated }
 
         ch_lima_input = params.skip_lima ? channel.empty() : ch_pbccs_bam_updated
@@ -107,8 +109,8 @@ workflow ISOSEQ {
         ch_isoseq_refine_input = params.skip_lima ? ch_pbccs_bam_updated : LIMA.out.bam
         ISOSEQ_REFINE(ch_isoseq_refine_input, SET_PRIMERS_CHANNEL.out.data) // Discard CCS without polyA tails, remove it from the other
 
-        BAMTOOLS_CONVERT(ISOSEQ_REFINE.out.bam)                   // Convert bam to fasta
-        GSTAMA_POLYACLEANUP(BAMTOOLS_CONVERT.out.data)            // Clean polyA tails from reads
+        BAMTOOLS_CONVERT(ISOSEQ_REFINE.out.bam)        // Convert bam to fasta
+        GSTAMA_POLYACLEANUP(BAMTOOLS_CONVERT.out.data) // Clean polyA tails from reads
     }
 
 
@@ -230,6 +232,7 @@ workflow ISOSEQ {
             name: 'nf_core_isoseq_software_mqc_versions.yml',
             sort: true,
             newLine: true)
+        .view()
 
     //
     // MODULE: MultiQC
