@@ -89,10 +89,10 @@ workflow ISOSEQ {
         ch_ccs_bam      = ch_samplesheet.filter { meta, _bam, _pbi -> meta.bam_type == "ccs" }
 
         PBCCS(
-            ch_subreads_bam, 
-            SET_CHUNK_NUM_CHANNEL.out.chunk_num, 
+            ch_subreads_bam,
+            SET_CHUNK_NUM_CHANNEL.out.chunk_num,
             params.chunk) // Generate CCS from raw reads
-        
+
         PBCCS.out.bam // Update meta: update id (+chunkX) and store former id
         .map { meta, file ->
             def chk       = (file =~ /.*\.(chunk\d+)\.bam/)[0][1]
