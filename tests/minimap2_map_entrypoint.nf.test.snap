@@ -11,9 +11,6 @@
                 "MINIMAP2_ALIGN": {
                     "minimap2": "2.29-r1283",
                     "samtools": 1.21
-                },
-                "Workflow": {
-                    "nf-core/isoseq": "v2.1.0dev"
                 }
             },
             [
@@ -107,6 +104,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-10-27T21:42:56.56068326"
+        "timestamp": "2025-10-29T17:43:02.747509729"
     }
 }

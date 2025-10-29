@@ -27,16 +27,13 @@
                     "lima": "2.12.0"
                 },
                 "ULTRA_ALIGN": {
-                    "ultra": 0.1,
-                    "samtools": 1.17
+                    "samtools": 1.17,
+                    "ultra": 0.1
                 },
                 "ULTRA_INDEX": {
-                    "ultra": 0.1,
                     "gffutils": "0.11.1",
-                    "sqlite": "3.42.0"
-                },
-                "Workflow": {
-                    "nf-core/isoseq": "v2.1.0dev"
+                    "sqlite": "3.42.0",
+                    "ultra": 0.1
                 }
             },
             [
@@ -149,6 +146,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-10-27T21:35:26.57694074"
+        "timestamp": "2025-10-29T17:34:56.305088869"
     }
 }
